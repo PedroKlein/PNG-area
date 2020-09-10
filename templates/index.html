@@ -4,25 +4,57 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+          integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+            integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+            integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+            integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+            crossorigin="anonymous"></script>
     <title>PNG Area</title>
 </head>
 <body>
 <script type=text/javascript src="{{ url_for('static', filename='js/main.js') }}"></script>
-<div class="container">
+<div class="container mt-5 mb-5 text-center">
+ <h1> PNG area calculator </h1>
+</div>
+<div class="form-group">
     <form method=post enctype=multipart/form-data>
-        <label for="real-height">Real height in meters</label>
-        <input step="0.01" type=number name="real-height" id="real-height">
-        <label for="real-width">Real width in meters</label>
-        <input step="0.01" type=number name="real-width" id="real-width">
-        <input type=file name=file id="imgInp">
-        <input type=submit value=Upload class="btn btn-primary">
+        <div class="text-center">
+            <label for="real-height">Real height</label>
+            <input step="0.01" type=number name="real-height" id="real-height">
+            <label for="real-width">Real width</label>
+            <input step="0.01" type=number name="real-width" id="real-width">
+            <label for="unit">
+                Unit of measurement:
+            </label>
+            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="unit" name="unit">
+                <option value="millimeters">millimeters</option>
+                <option value="centimeters">centimeters</option>
+                <option value="meters" selected>meters</option>
+                <option value="kilometers">kilometers</option>
+            </select>
+        </div>
+        <div class="file-upload-wrapper">
+            <input type=file name=file id="imgInp">
+            <button type=submit class="btn btn-primary">Calculate</button>
+        </div>
+
     </form>
-<!--    <img id="output" src="#" alt="" width="40%" height="40%">-->
+    <!--    <img id="output" src="#" alt="" width="40%" height="40%">-->
 </div>
 {% if data %}
-<div class="container">
+<div class="container text-center">
     <img src="{{ data.uploaded_img }}" width="480px" height="360px">
-    <span>area = {{ data.area }} square meters</span>
+    <img src="{{ data.processed_img }}" width="480px" height="360px">
+</div>
+<div class="container mt-5">
+    <h2>area = {{ data.area }} square {{ data.unit }}</h2>
 </div>
 {% endif %}
 </body>

@@ -1,4 +1,14 @@
 body {
-    background: white;
+    background-color: #F3F3F1 !important;
+    text-align: center;
+    font-family: 'Roboto', sans-serif !important;
     margin: 0;
+}
+
+.form {
+    display: flex;
+}
+
+.result {
+    display: flex;
 }
