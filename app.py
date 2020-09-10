@@ -1,7 +1,6 @@
 import os
 from flask import Flask, request, redirect, url_for, render_template, flash
 from werkzeug.utils import secure_filename
-
 from service import core
 
 app = Flask(__name__, static_url_path="/static")
@@ -41,7 +40,7 @@ def index():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(UPLOAD_FOLDER, filename))
-            result = core.get_area(real_height, real_width, os.path.join(UPLOAD_FOLDER, filename))
+            result = core.get_area(int(real_height), int(real_width), os.path.join(UPLOAD_FOLDER, filename))
             data = {
                 "uploaded_img": "static/uploads/" + filename,
                 "area": result
