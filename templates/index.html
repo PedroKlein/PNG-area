@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <title>PNG Area</title>
+</head>
+<body>
+<script type=text/javascript src="{{ url_for('static', filename='js/main.js') }}"></script>
+<div class="container">
+    <form method=post enctype=multipart/form-data>
+        <label for="real-height">Real height in meters</label>
+        <input step="0.01" type=number name="real-height" id="real-height">
+        <label for="real-width">Real width in meters</label>
+        <input step="0.01" type=number name="real-width" id="real-width">
+        <input type=file name=file id="imgInp">
+        <input type=submit value=Upload class="btn btn-primary">
+    </form>
+<!--    <img id="output" src="#" alt="" width="40%" height="40%">-->
+</div>
+{% if data %}
+<div class="container">
+    <img src="{{ data.uploaded_img }}" width="480px" height="360px">
+</div>
+{% endif %}
+</body>
+</html>
